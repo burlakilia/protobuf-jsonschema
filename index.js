@@ -59,11 +59,13 @@ Compiler.prototype.compile = function(type) {
   if (type) {
     this.resolve(type, '');
   } else {
-    this.schema.messages.forEach(function(message) {
+    Object.keys(this.messages).forEach(function(key) {
+      const message = this.messages[key];
       this.resolve(message.id, '');
     }, this);
     
-    this.schema.enums.forEach(function(e) {
+    Object.keys(this.enums).forEach(function(key) {
+      const e = this.enums[key];
       this.resolve(e.id, '');
     }, this);
   }
